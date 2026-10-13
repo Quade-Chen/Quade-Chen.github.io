@@ -1,0 +1,153 @@
+# Site
+repository: Quade-Chen/Quade-Chen.github.io
+
+# Content configuration version
+version: 2
+
+# Personal info
+name: 陈区
+title: AI 前沿部署工程师
+email: 351912658@qq.com
+phone: 15815320063
+website: https://quade-chen.github.io
+
+# Dark Mode
+darkmode: true
+
+# Social links
+github_username: Quade-Chen
+
+# Additional icon links
+additional_links:
+- title: 邮箱
+  icon: fas fa-envelope
+  url: mailto:351912658@qq.com
+
+# About Section
+# about_profile_image: images/profile.jpg  # 有照片后取消注释并放入 images/profile.jpg
+about_content: |
+  你好，我是**陈区**，智能科学与技术专业 2026 届本科毕业生，求职方向为 **AI 前沿部署工程师**。
+
+  熟悉大模型 API 集成与智能体搭建，有直播运营与内容剪辑实战经验，擅长将 AI 工具落地到具体业务场景。对新技术保持高敏感度，关注大模型部署、RAG、Agent 开发等方向，希望在 AI 应用落地领域持续深耕。
+
+content:
+  - title: 技能特长
+    layout: list
+    content:
+      - layout: left
+        border: weak
+        title: AI 大模型应用
+        quote: >
+          大模型 API 调用、Prompt 工程、智能体开发
+        description: |
+          - 熟练调用 DeepSeek、OpenAI 等大模型 API，完成对话、文本生成、数据分析等业务集成
+          - 使用 Coze / Dify 平台搭建 AI 智能体，实现工作流自动化与办公场景落地
+          - 了解 RAG 检索增强生成、向量数据库、模型微调基础概念
+          - 具备 AI 工具链（豆包、DeepSeek、Trae CN）的深度使用经验
+
+      - layout: left
+        border: weak
+        title: 编程与工具
+        quote: >
+          Python / C / Git / Linux / Docker 基础
+        description: |
+          - Python：脚本编写、API 调用、数据处理
+          - C 语言：基于 STM32F103 完成嵌入式项目开发
+          - Git 版本管理、Linux 基本操作、Docker 镜像部署基础
+
+      - layout: left
+        border: weak
+        title: 内容与运营
+        quote: >
+          Premiere Pro 视频剪辑 / 直播运营 / 校园主持
+        description: |
+          - 熟练使用 Premiere Pro 进行视频剪辑、字幕制作、后期包装
+          - 有直播带货运营经验，熟悉直播间流程、话术设计与数据复盘
+          - 具备校园主持与公开表达能力
+
+  - title: 项目经历
+    layout: list
+    content:
+      - layout: left
+        border: weak
+        title: 车载防酒驾报警系统
+        link: https://github.com/Quade-Chen
+        link_text: 查看项目
+        quote: >
+          基于 STM32F103C8T6 的嵌入式安全系统设计
+        description: |
+          - 使用 STM32F103C8T6 单片机为主控，集成 MQ-3 酒精传感器与 BM01 模块
+          - 实现酒精浓度实时检测、超限声光报警、驾驶员身份识别功能
+          - 使用 Keil MDK 完成程序开发，嘉立创 EDA 绘制原理图与 PCB
+          - 完成本科毕业设计并通过答辩
+
+      - layout: left
+        border: weak
+        title: AI 智能体与办公自动化
+        link: https://github.com/Quade-Chen
+        link_text: 查看项目
+        quote: >
+          基于 Coze / Trae CN 的 AI 工作流搭建
+        description: |
+          - 使用 Coze 平台搭建面向商家的 AI 客服、文案生成、数据处理智能体
+          - 通过调用 DeepSeek API 实现自动化文案生成与信息整理
+          - 探索 AI 工具在内容生产、运营效率提升中的落地场景
+
+  - title: 工作经历
+    layout: list
+    content:
+      - layout: right
+        title: 直播运营
+        sub_title: 直播带货运营
+        caption: 2025.03 - 2025.07
+        quote: >
+          直播间全流程运营与内容执行
+        description: |
+          - 负责直播间日常运营，包括场次策划、话术设计、商品上下架
+          - 配合主播完成直播带货，监控直播间数据并进行复盘优化
+          - 使用 PR 剪辑直播高光片段与短视频素材，用于账号引流
+
+  - title: 教育背景
+    layout: list
+    content:
+      - layout: top-right
+        title: 全日制本科
+        sub_title: 智能科学与技术
+        caption: 2022.09 - 2026.06
+        quote: >
+          2026 届本科毕业生
+        description: |
+          - 主修课程：人工智能、机器学习、嵌入式系统、数据结构、Python 程序设计
+          - 毕业设计：基于 STM32 的车载防酒驾报警系统（已通过答辩）
+
+  - title: 自我评价
+    layout: text
+    content: |
+      对 AI 新技术有强烈的学习热情和动手能力，能快速将大模型 API 和智能体工具应用到实际业务中。既有技术背景（嵌入式 + Python），又有运营和内容制作的实战经验，适合 AI 应用落地、售前部署、技术支持等需要"技术 + 业务"结合的岗位。
+
+# Footer
+footer_show_references: false
+
+# Build settings
+remote_theme: sproogen/modern-resume-theme
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+plugins:
+ - jekyll-seo-tag
+
+exclude : [
+  "Gemfile",
+  "Gemfile.lock",
+  "node_modules",
+  "vendor/bundle/",
+  "vendor/cache/",
+  "vendor/gems/",
+  "vendor/ruby/",
+  "lib/",
+  "scripts/",
+  "docker-compose.yml",
+  ]
+#（注：内容由AI生成）
