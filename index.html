@@ -59,11 +59,11 @@
         }
 
         /* 卡片hover左侧蓝条 */
-        .project-card {
+        .project-card, .chat-card {
             position: relative;
             overflow: hidden;
         }
-        .project-card::before {
+        .project-card::before, .chat-card::before {
             content: '';
             position: absolute;
             left: 0;
@@ -74,7 +74,7 @@
             transform: scaleY(0);
             transition: transform 0.3s ease;
         }
-        .project-card:hover::before {
+        .project-card:hover::before, .chat-card:hover::before {
             transform: scaleY(1);
         }
 
@@ -108,6 +108,35 @@
         .dark .timeline-line {
             background: #1E293B;
         }
+
+        /* 聊天消息滚动条 */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 3px;
+        }
+        .dark .chat-messages::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+
+        /* 打字点动画 */
+        .typing-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #64748B;
+            margin: 0 2px;
+            animation: typingBounce 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typingBounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-slate-900 text-neutral dark:text-slate-100 transition-colors duration-300">
@@ -121,6 +150,7 @@
                     <a href="#skills" class="hover:text-primary transition-colors">技能</a>
                     <a href="#projects" class="hover:text-primary transition-colors">项目</a>
                     <a href="#experience" class="hover:text-primary transition-colors">经历</a>
+                    <a href="#chat" class="hover:text-primary transition-colors">问答</a>
                     <a href="#contact" class="hover:text-primary transition-colors">联系</a>
                 </div>
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
@@ -133,7 +163,6 @@
 
     <!-- Hero 区域 -->
     <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
-        <!-- 科技感背景 -->
         <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
             <div class="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
             <div class="absolute bottom-20 left-10 w-72 h-72 bg-indigo-400/10 rounded-full blur-3xl"></div>
@@ -161,8 +190,8 @@
                 <a href="#projects" class="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5">
                     查看项目 <i class="fa fa-arrow-down ml-2 text-sm"></i>
                 </a>
-                <a href="#contact" class="px-6 py-3 border border-slate-200 dark:border-slate-700 rounded-lg font-medium hover:border-primary hover:text-primary transition-all">
-                    联系我
+                <a href="#chat" class="px-6 py-3 border border-slate-200 dark:border-slate-700 rounded-lg font-medium hover:border-primary hover:text-primary transition-all">
+                    向AI提问了解我
                 </a>
             </div>
         </div>
@@ -177,7 +206,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- 技能卡片1 -->
                 <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
                     <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
                         <i class="fa fa-brain text-lg"></i>
@@ -191,7 +219,6 @@
                     </div>
                 </div>
 
-                <!-- 技能卡片2 -->
                 <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow" style="transition-delay: 0.1s">
                     <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
                         <i class="fa fa-code text-lg"></i>
@@ -207,7 +234,6 @@
                     </div>
                 </div>
 
-                <!-- 技能卡片3 -->
                 <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow" style="transition-delay: 0.2s">
                     <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
                         <i class="fa fa-film text-lg"></i>
@@ -232,7 +258,6 @@
             </div>
 
             <div class="space-y-8">
-                <!-- 项目卡片1 -->
                 <div class="fade-in-up project-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all hover:-translate-y-1">
                     <div class="md:flex">
                         <div class="md:w-2/5 h-48 md:h-auto bg-gradient-to-br from-blue-600 to-indigo-700 relative overflow-hidden">
@@ -274,7 +299,6 @@
                     </div>
                 </div>
 
-                <!-- 项目卡片2 -->
                 <div class="fade-in-up project-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all hover:-translate-y-1" style="transition-delay: 0.1s">
                     <div class="md:flex">
                         <div class="md:w-2/5 h-48 md:h-auto bg-gradient-to-br from-cyan-500 to-blue-600 relative overflow-hidden">
@@ -328,7 +352,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-16">
-                <!-- 工作经历 -->
                 <div class="fade-in-up">
                     <h3 class="font-semibold text-lg mb-8 flex items-center">
                         <i class="fa fa-briefcase text-primary mr-3"></i>工作经历
@@ -346,7 +369,6 @@
                     </div>
                 </div>
 
-                <!-- 教育背景 -->
                 <div class="fade-in-up" style="transition-delay: 0.1s">
                     <h3 class="font-semibold text-lg mb-8 flex items-center">
                         <i class="fa fa-graduation-cap text-primary mr-3"></i>教育背景
@@ -367,33 +389,79 @@
         </div>
     </section>
 
+    <!-- AI互动问答板块 -->
+    <section id="chat" class="py-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="fade-in-up mb-16">
+                <p class="text-primary font-medium mb-2">04 / AI互动问答</p>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight mb-3">想更了解我？问问我的AI助手</h2>
+                <p class="text-neutral-light dark:text-slate-400 max-w-2xl">
+                    这是基于我个人知识库训练的AI助手，可以回答关于我的技能、项目、经历等任何问题。您可以直接提问，也可以点击下方推荐问题开始。
+                </p>
+            </div>
+
+            <div class="fade-in-up chat-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700">
+                <!-- 聊天消息区域 -->
+                <div id="chat-messages" class="chat-messages h-[500px] overflow-y-auto p-6 space-y-4">
+                    <!-- 欢迎消息 -->
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-sm flex-shrink-0 mt-0.5">
+                            <i class="fa fa-robot"></i>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-700/50 rounded-xl rounded-tl-none px-4 py-3 text-sm max-w-[75%] leading-relaxed">
+                            <p>你好！我是陈区的 AI 简历助手，可以回答关于他的技能、项目和经历的任何问题。</p>
+                            <p class="mt-3 text-xs text-neutral-light dark:text-slate-400 font-medium">推荐问题：</p>
+                            <div class="mt-2 space-y-1.5">
+                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">你掌握哪些技术栈？</button>
+                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">介绍一下你的毕业设计</button>
+                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">你做过哪些AI相关的项目？</button>
+                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">你现在在找工作吗？</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 输入区域 -->
+                <div class="p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/30">
+                    <div class="flex gap-3">
+                        <input type="text" id="chat-input" placeholder="输入你的问题，例如：你会用DeepSeek做什么？" class="flex-1 px-4 py-3 text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all">
+                        <button id="chat-send" class="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all hover:shadow-md hover:shadow-primary/20">
+                            <i class="fa fa-paper-plane mr-2"></i>发送
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-neutral-light mt-2 text-right">由 DeepSeek 提供 AI 能力 · 答案基于个人知识库生成</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 联系页脚 -->
-    <section id="contact" class="py-24">
+    <section id="contact" class="py-24 bg-slate-50 dark:bg-slate-800/30">
         <div class="max-w-5xl mx-auto px-6 text-center">
             <div class="fade-in-up">
-                <p class="text-primary font-medium mb-2">04 / 联系方式</p>
+                <p class="text-primary font-medium mb-2">05 / 联系方式</p>
                 <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight mb-6">保持联系</h2>
                 <p class="text-neutral-light dark:text-slate-400 max-w-xl mx-auto mb-10">
                     如果您对我的工作感兴趣，欢迎通过以下方式联系我，期待与您交流。
                 </p>
 
-                <div class="flex justify-center flex-wrap gap-6 mb-12">
+                <div class="flex justify-center flex-wrap gap-8 mb-12">
                     <a href="https://github.com/你的GitHub用户名" target="_blank" class="flex items-center gap-2 text-neutral-light hover:text-primary transition-colors">
-                        <i class="fa fa-github text-lg"></i>
+                        <i class="fa fa-github text-xl"></i>
                         <span>GitHub</span>
                     </a>
                     <a href="mailto:你的邮箱@example.com" class="flex items-center gap-2 text-neutral-light hover:text-primary transition-colors">
-                        <i class="fa fa-envelope text-lg"></i>
+                        <i class="fa fa-envelope text-xl"></i>
                         <span>Email</span>
                     </a>
                     <a href="tel:你的手机号" class="flex items-center gap-2 text-neutral-light hover:text-primary transition-colors">
-                        <i class="fa fa-phone text-lg"></i>
+                        <i class="fa fa-phone text-xl"></i>
                         <span>电话</span>
                     </a>
                 </div>
 
                 <p class="text-xs text-neutral-light/60">
-                    © 2026 陈区 · 个人简历
+                    © 2026 陈区 · 用AI构建
                 </p>
             </div>
         </div>
@@ -405,7 +473,7 @@
     </button>
 
     <script>
-        // 导航栏滚动效果
+        // ==================== 原有交互逻辑 ====================
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -417,11 +485,9 @@
             }
         });
 
-        // 深浅色切换
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
         
-        // 优先跟随系统
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             html.classList.add('dark');
         }
@@ -430,7 +496,6 @@
             html.classList.toggle('dark');
         });
 
-        // 打字机效果
         const typingText = document.getElementById('typing-text');
         const roles = ['AI前沿部署工程师', '大模型应用开发者', 'AI智能体搭建师', '技术×内容运营'];
         let roleIndex = 0;
@@ -463,9 +528,7 @@
         }
         typeEffect();
 
-        // 滚动淡入动画
         const fadeElements = document.querySelectorAll('.fade-in-up');
-        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -476,9 +539,7 @@
 
         fadeElements.forEach(el => observer.observe(el));
 
-        // 回到顶部按钮
         const backToTop = document.getElementById('back-to-top');
-        
         window.addEventListener('scroll', () => {
             if (window.scrollY > 500) {
                 backToTop.classList.remove('opacity-0', 'invisible');
@@ -492,6 +553,219 @@
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // ==================== AI 聊天助手逻辑 ====================
+
+        // ========== 唯一需要修改的地方：替换成你的 Cloudflare Worker 地址 ==========
+        const PROXY_URL = "你的Cloudflare_Worker地址";
+        // ======================================================================
+
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        const chatMessages = document.getElementById('chat-messages');
+
+        // ===== 已强化：零容忍规则 + 结构化知识库 =====
+        const KNOWLEDGE_BASE = `
+【身份定义】
+你是陈区专属的个人简历AI助手，仅负责回答与陈区个人相关的问题。
+
+【核心规则 - 零容忍】
+1. 你必须且只能使用下方【知识库】中的信息回答问题，严禁使用你自身的预训练知识，严禁编造任何信息。
+2. 如果知识库中没有相关信息，或者你不确定答案，必须统一回复：
+   "这个问题我暂时无法回答，您可以通过页面下方的联系方式直接联系陈区。"
+3. 严禁推理、延伸、补充任何知识库中没有提到的内容。
+4. 严禁回答与陈区个人无关的问题，比如技术科普、闲聊、时事、其他公司信息等，一律按第2条拒答话术回复。
+5. 回答要简洁专业，口语化，重点突出，一般不超过3句话。
+
+【知识库】
+【基本信息】
+姓名：陈区
+英文名：Quade Chen
+当前职位：AI前沿部署工程师
+所在城市：广东广州
+求职状态：正在找工作，可随时联系
+
+【核心技能】
+1. AI大模型应用：DeepSeek API开发、Coze智能体搭建、RAG检索增强生成、Prompt工程
+2. 编程开发：Python、C/C++、STM32嵌入式开发、Docker、Linux、Git
+3. 内容运营：PR视频剪辑、直播运营、文案策划
+
+【项目经历】
+1. 车载防酒驾报警系统（2026年，毕业设计）
+   - 基于STM32F103单片机设计的车载酒精检测报警系统
+   - 使用MQ-3酒精传感器，浓度检测响应时间小于1秒
+   - 集成语音报警、LED灯光报警、继电器控制模块
+   - 酒精浓度超标时自动切断车辆启动电路
+   - 支持蓝牙数据传输，可在手机端查看检测数据
+   - 技术栈：STM32、C语言、传感器、蓝牙模块
+
+2. AI智能体与办公自动化（2025年）
+   - 基于Coze平台搭建业务场景智能体
+   - 对接DeepSeek API，实现RAG知识库问答功能
+   - 设计自动化工作流，替代重复性文案生成与数据整理工作
+   - 应用场景覆盖：内容创作、信息整理、客服咨询
+   - 技术栈：Coze、DeepSeek、RAG、Prompt工程
+
+【工作经历】
+2025.03 - 2025.07 直播运营
+- 负责直播间内容策划与场控执行
+- 搭建完整直播流程，定期进行数据复盘
+- 参与短视频内容剪辑制作
+
+【教育背景】
+2022 - 2026 智能科学与技术 本科
+- 核心课程：人工智能、嵌入式系统、数据结构、算法、机器学习
+- 具备软硬件结合的工程实践能力
+
+【求职意向】
+目标方向：AI应用开发、大模型工程、智能体开发、AI部署相关岗位
+`;
+
+        let isLoading = false;
+
+        // 建议问题点击
+        document.querySelectorAll('.suggestion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                chatInput.value = btn.textContent;
+                sendMessage();
+            });
+        });
+
+        // 发送按钮
+        chatSend.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function addUserMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'flex gap-3 justify-end';
+            div.innerHTML = `
+                <div class="bg-primary text-white rounded-xl rounded-tr-none px-4 py-3 text-sm max-w-[75%] leading-relaxed">
+                    ${text}
+                </div>
+                <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-600 flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
+                    <i class="fa fa-user"></i>
+                </div>
+            `;
+            chatMessages.appendChild(div);
+            scrollToBottom();
+        }
+
+        function addAiMessagePlaceholder() {
+            const div = document.createElement('div');
+            div.id = 'ai-loading';
+            div.className = 'flex gap-3';
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-sm flex-shrink-0 mt-0.5">
+                    <i class="fa fa-robot"></i>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-700/50 rounded-xl rounded-tl-none px-4 py-3 text-sm">
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                </div>
+            `;
+            chatMessages.appendChild(div);
+            scrollToBottom();
+        }
+
+        function updateAiMessage(text) {
+            const loading = document.getElementById('ai-loading');
+            if (loading) {
+                loading.id = '';
+                loading.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-sm flex-shrink-0 mt-0.5">
+                        <i class="fa fa-robot"></i>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-700/50 rounded-xl rounded-tl-none px-4 py-3 text-sm max-w-[75%] leading-relaxed ai-message-content">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                const lastMsg = document.querySelector('.ai-message-content');
+                if (lastMsg) lastMsg.innerHTML = text;
+            }
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text || isLoading) return;
+            
+            if (PROXY_URL === "你的Cloudflare_Worker地址") {
+                addUserMessage(text);
+                addAiMessagePlaceholder();
+                setTimeout(() => {
+                    updateAiMessage("请先在代码中配置您的 Cloudflare Worker 代理地址才能使用聊天功能。");
+                }, 500);
+                chatInput.value = '';
+                return;
+            }
+
+            isLoading = true;
+            addUserMessage(text);
+            chatInput.value = '';
+            addAiMessagePlaceholder();
+
+            try {
+                const response = await fetch(PROXY_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'deepseek-chat',
+                        stream: true,
+                        messages: [
+                            { role: 'system', content: KNOWLEDGE_BASE },
+                            { role: 'user', content: text }
+                        ],
+                        temperature: 0.1,
+                        max_tokens: 500,
+                        frequency_penalty: 0.1
+                    })
+                });
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullText = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n').filter(line => line.trim() !== '');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6);
+                            if (data === '[DONE]') continue;
+                            
+                            try {
+                                const json = JSON.parse(data);
+                                const content = json.choices[0].delta.content;
+                                if (content) {
+                                    fullText += content;
+                                    updateAiMessage(fullText.replace(/\n/g, '<br>'));
+                                }
+                            } catch (e) {}
+                        }
+                    }
+                }
+
+            } catch (error) {
+                updateAiMessage('抱歉，请求失败，请检查代理地址是否配置正确。');
+                console.error(error);
+            }
+
+            isLoading = false;
+        }
     </script>
 </body>
 </html>
