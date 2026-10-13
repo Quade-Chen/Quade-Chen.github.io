@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈区 | AI前沿部署工程师</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#0E2B5C',
+                        neutral: '#1E293B',
+                        'neutral-light': '#64748B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-balance { text-wrap: balance; }
+            .blur-nav { backdrop-filter: blur(12px); }
+            .scroll-smooth { scroll-behavior: smooth; }
+            .fade-in-up {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+            .fade-in-up.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* 打字机光标效果 */
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: #165DFF;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* 卡片hover左侧蓝条 */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #165DFF;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        /* 时间轴竖线 */
+        .timeline-item {
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #165DFF;
+            border: 3px solid white;
+            z-index: 1;
+        }
+        .dark .timeline-item::before {
+            border-color: #0F172A;
+        }
+        .timeline-line {
+            position: absolute;
+            left: -24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #E2E8F0;
+        }
+        .dark .timeline-line {
+            background: #1E293B;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-slate-900 text-neutral dark:text-slate-100 transition-colors duration-300">
+
+    <!-- 固定导航栏 -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center">
+            <a href="#hero" class="font-bold text-lg text-primary">Quade Chen</a>
+            <div class="flex items-center gap-8">
+                <div class="hidden md:flex gap-6 text-sm font-medium">
+                    <a href="#skills" class="hover:text-primary transition-colors">技能</a>
+                    <a href="#projects" class="hover:text-primary transition-colors">项目</a>
+                    <a href="#experience" class="hover:text-primary transition-colors">经历</a>
+                    <a href="#contact" class="hover:text-primary transition-colors">联系</a>
+                </div>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <i class="fa fa-moon-o dark:hidden"></i>
+                    <i class="fa fa-sun-o hidden dark:inline"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- 科技感背景 -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+            <div class="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 left-10 w-72 h-72 bg-indigo-400/10 rounded-full blur-3xl"></div>
+            <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style="background-image: radial-gradient(#165DFF 1px, transparent 1px); background-size: 30px 30px;"></div>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto px-6 py-32 w-full">
+            <div class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-6">
+                <i class="fa fa-circle text-[8px] mr-2"></i>Available for opportunities
+            </div>
+            
+            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-bold leading-tight tracking-tight mb-4 text-balance">
+                你好，我是陈区
+            </h1>
+            
+            <h2 class="text-[clamp(1.25rem,3vw,1.75rem)] font-semibold text-secondary dark:text-slate-200 mb-6 h-8">
+                <span id="typing-text">AI前沿部署工程师</span><span class="typing-cursor"></span>
+            </h2>
+            
+            <p class="text-neutral-light dark:text-slate-400 text-lg max-w-2xl leading-relaxed mb-10">
+                智能科学与技术专业背景，专注AI大模型落地应用与智能体搭建，具备软硬件开发能力与内容运营经验，致力于用技术提升效率与创造价值。
+            </p>
+            
+            <div class="flex flex-wrap gap-4">
+                <a href="#projects" class="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5">
+                    查看项目 <i class="fa fa-arrow-down ml-2 text-sm"></i>
+                </a>
+                <a href="#contact" class="px-6 py-3 border border-slate-200 dark:border-slate-700 rounded-lg font-medium hover:border-primary hover:text-primary transition-all">
+                    联系我
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能板块 -->
+    <section id="skills" class="py-24 bg-slate-50 dark:bg-slate-800/30">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="fade-in-up mb-16">
+                <p class="text-primary font-medium mb-2">01 / 技能特长</p>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight">核心能力栈</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 技能卡片1 -->
+                <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                        <i class="fa fa-brain text-lg"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-4">AI大模型应用</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs rounded-md bg-blue-50 dark:bg-slate-700 text-primary">DeepSeek API</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-blue-50 dark:bg-slate-700 text-primary">Coze智能体</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">RAG检索增强</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Prompt工程</span>
+                    </div>
+                </div>
+
+                <!-- 技能卡片2 -->
+                <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow" style="transition-delay: 0.1s">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                        <i class="fa fa-code text-lg"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-4">编程开发</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Python</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">C/C++</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">STM32</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Docker</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Linux</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Git</span>
+                    </div>
+                </div>
+
+                <!-- 技能卡片3 -->
+                <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow" style="transition-delay: 0.2s">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                        <i class="fa fa-film text-lg"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-4">内容运营</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">PR剪辑</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">直播运营</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">文案策划</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目经历 -->
+    <section id="projects" class="py-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="fade-in-up mb-16">
+                <p class="text-primary font-medium mb-2">02 / 项目作品</p>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight">代表项目</h2>
+            </div>
+
+            <div class="space-y-8">
+                <!-- 项目卡片1 -->
+                <div class="fade-in-up project-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all hover:-translate-y-1">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 h-48 md:h-auto bg-gradient-to-br from-blue-600 to-indigo-700 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fa fa-car text-white/20 text-8xl"></i>
+                            </div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <span class="text-xs px-2 py-1 bg-white/20 rounded backdrop-blur-sm">嵌入式开发</span>
+                            </div>
+                        </div>
+                        <div class="md:w-3/5 p-8">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-bold text-xl">车载防酒驾报警系统</h3>
+                                <span class="text-xs text-neutral-light">2026</span>
+                            </div>
+                            <p class="text-neutral-light dark:text-slate-400 text-sm mb-4 leading-relaxed">
+                                基于STM32F103单片机设计的车载酒精检测报警系统，用于毕业设计。
+                            </p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>采用MQ-3酒精传感器实现精准浓度检测，响应时间小于1秒</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>集成声光报警与继电器控制，超标自动切断车辆启动电路</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>支持蓝牙数据传输，可通过移动端查看检测数据</span>
+                                </li>
+                            </ul>
+                            <div class="mt-5 flex gap-3">
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">STM32</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">C语言</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">传感器</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目卡片2 -->
+                <div class="fade-in-up project-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all hover:-translate-y-1" style="transition-delay: 0.1s">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 h-48 md:h-auto bg-gradient-to-br from-cyan-500 to-blue-600 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fa fa-robot text-white/20 text-8xl"></i>
+                            </div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <span class="text-xs px-2 py-1 bg-white/20 rounded backdrop-blur-sm">AI应用</span>
+                            </div>
+                        </div>
+                        <div class="md:w-3/5 p-8">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-bold text-xl">AI智能体与办公自动化</h3>
+                                <span class="text-xs text-neutral-light">2025</span>
+                            </div>
+                            <p class="text-neutral-light dark:text-slate-400 text-sm mb-4 leading-relaxed">
+                                基于Coze平台搭建业务场景智能体，结合大模型API实现自动化工作流。
+                            </p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>对接DeepSeek API，搭建RAG知识库问答系统</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>设计自动化工作流，替代重复性文案生成与数据整理工作</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>覆盖内容创作、信息整理、客服咨询等多个业务场景</span>
+                                </li>
+                            </ul>
+                            <div class="mt-5 flex gap-3">
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">Coze</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">DeepSeek</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">RAG</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作与教育 -->
+    <section id="experience" class="py-24 bg-slate-50 dark:bg-slate-800/30">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="fade-in-up mb-16">
+                <p class="text-primary font-medium mb-2">03 / 经历背景</p>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight">工作与教育</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- 工作经历 -->
+                <div class="fade-in-up">
+                    <h3 class="font-semibold text-lg mb-8 flex items-center">
+                        <i class="fa fa-briefcase text-primary mr-3"></i>工作经历
+                    </h3>
+                    <div class="relative pl-8">
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-item pb-10">
+                            <p class="text-sm text-neutral-light dark:text-slate-400 mb-1">2025.03 - 2025.07</p>
+                            <h4 class="font-semibold text-base mb-2">直播运营</h4>
+                            <p class="text-sm text-neutral-light dark:text-slate-400 leading-relaxed">
+                                负责直播间内容策划与场控执行，完成直播流程搭建与数据复盘，参与短视频内容剪辑制作。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 教育背景 -->
+                <div class="fade-in-up" style="transition-delay: 0.1s">
+                    <h3 class="font-semibold text-lg mb-8 flex items-center">
+                        <i class="fa fa-graduation-cap text-primary mr-3"></i>教育背景
+                    </h3>
+                    <div class="relative pl-8">
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-item pb-10">
+                            <p class="text-sm text-neutral-light dark:text-slate-400 mb-1">2022 - 2026</p>
+                            <h4 class="font-semibold text-base mb-2">智能科学与技术 · 本科</h4>
+                            <p class="text-sm text-neutral-light dark:text-slate-400 leading-relaxed">
+                                系统学习人工智能、嵌入式系统、数据结构等核心课程，具备软硬件结合的工程实践能力。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系页脚 -->
+    <section id="contact" class="py-24">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="fade-in-up">
+                <p class="text-primary font-medium mb-2">04 / 联系方式</p>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight mb-6">保持联系</h2>
+                <p class="text-neutral-light dark:text-slate-400 max-w-xl mx-auto mb-10">
+                    如果您对我的工作感兴趣，欢迎通过以下方式联系我，期待与您交流。
+                </p>
+
+                <div class="flex justify-center flex-wrap gap-6 mb-12">
+                    <a href="https://github.com/你的GitHub用户名" target="_blank" class="flex items-center gap-2 text-neutral-light hover:text-primary transition-colors">
+                        <i class="fa fa-github text-lg"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="mailto:你的邮箱@example.com" class="flex items-center gap-2 text-neutral-light hover:text-primary transition-colors">
+                        <i class="fa fa-envelope text-lg"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="tel:你的手机号" class="flex items-center gap-2 text-neutral-light hover:text-primary transition-colors">
+                        <i class="fa fa-phone text-lg"></i>
+                        <span>电话</span>
+                    </a>
+                </div>
+
+                <p class="text-xs text-neutral-light/60">
+                    © 2026 陈区 · 个人简历
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 回到顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-10 h-10 rounded-full bg-primary text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90 z-40">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/80', 'dark:bg-slate-900/80', 'blur-nav', 'shadow-sm', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('bg-white/80', 'dark:bg-slate-900/80', 'blur-nav', 'shadow-sm', 'py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // 深浅色切换
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // 优先跟随系统
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
+        // 打字机效果
+        const typingText = document.getElementById('typing-text');
+        const roles = ['AI前沿部署工程师', '大模型应用开发者', 'AI智能体搭建师', '技术×内容运营'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 120;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+        typeEffect();
+
+        // 滚动淡入动画
+        const fadeElements = document.querySelectorAll('.fade-in-up');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // 回到顶部按钮
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
