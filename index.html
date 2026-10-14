@@ -396,7 +396,7 @@
                 <p class="text-primary font-medium mb-2">04 / AI互动问答</p>
                 <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight mb-3">想更了解我？问问我的AI助手</h2>
                 <p class="text-neutral-light dark:text-slate-400 max-w-2xl">
-                    这是基于我个人知识库训练的AI助手，可以回答关于我的技能、项目、经历等任何问题。您可以直接提问，也可以点击下方推荐问题开始。
+                    可以问我关于个人技能、项目经历的问题，也可以交流技术、行业、求职相关话题。您可以直接提问，也可以点击下方推荐问题开始。
                 </p>
             </div>
 
@@ -409,13 +409,13 @@
                             <i class="fa fa-robot"></i>
                         </div>
                         <div class="bg-slate-50 dark:bg-slate-700/50 rounded-xl rounded-tl-none px-4 py-3 text-sm max-w-[75%] leading-relaxed">
-                            <p>你好！我是陈区的 AI 简历助手，可以回答关于他的技能、项目和经历的任何问题。</p>
+                            <p>你好！我是陈区的 AI 简历助手，可以回答关于他的技能、项目和经历，也可以交流技术、求职相关的话题。</p>
                             <p class="mt-3 text-xs text-neutral-light dark:text-slate-400 font-medium">推荐问题：</p>
                             <div class="mt-2 space-y-1.5">
                                 <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">你掌握哪些技术栈？</button>
                                 <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">介绍一下你的毕业设计</button>
-                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">你做过哪些AI相关的项目？</button>
-                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">你现在在找工作吗？</button>
+                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">RAG是什么意思？</button>
+                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">AI工程师面试要注意什么？</button>
                             </div>
                         </div>
                     </div>
@@ -424,12 +424,12 @@
                 <!-- 输入区域 -->
                 <div class="p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/30">
                     <div class="flex gap-3">
-                        <input type="text" id="chat-input" placeholder="输入你的问题，例如：你会用DeepSeek做什么？" class="flex-1 px-4 py-3 text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all">
+                        <input type="text" id="chat-input" placeholder="输入你的问题..." class="flex-1 px-4 py-3 text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all">
                         <button id="chat-send" class="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all hover:shadow-md hover:shadow-primary/20">
                             <i class="fa fa-paper-plane mr-2"></i>发送
                         </button>
                     </div>
-                    <p class="text-[11px] text-neutral-light mt-2 text-right">由 DeepSeek 提供 AI 能力 · 答案基于个人知识库生成</p>
+                    <p class="text-[11px] text-neutral-light mt-2 text-right">由 DeepSeek 提供 AI 能力</p>
                 </div>
             </div>
         </div>
@@ -560,62 +560,21 @@
         const chatSend = document.getElementById('chat-send');
         const chatMessages = document.getElementById('chat-messages');
 
-        // ===== 零容忍规则 + 结构化知识库 =====
-        const KNOWLEDGE_BASE = `
-【身份定义】
-你是陈区专属的个人简历AI助手，仅负责回答与陈区个人相关的问题。
+        const SYSTEM_PROMPT = `你是陈区的个人简历AI助手，运行在他的个人简历网站上。
+请严格遵守以下规则：
+1. 关于陈区个人的问题（技能、项目、经历、教育、求职意向等），必须且只能使用下方【个人知识库】中的信息回答，严禁编造任何信息。如果知识库中没有，统一回复："这个问题我暂时无法回答，您可以通过页面下方的联系方式直接联系陈区。"
+2. 关于技术知识、行业趋势、求职建议、编程问题等通用话题，可以使用你的专业知识回答，但请说明这是通用观点，不代表陈区的个人立场。回答要专业、简洁。
+3. 严禁回答与求职、技术完全无关的闲聊、时政、娱乐等话题，遇到此类问题请礼貌地引导对方提问简历相关内容。
+4. 回答尽量控制在3句话以内，重点突出。
 
-【核心规则 - 零容忍】
-1. 你必须且只能使用下方【知识库】中的信息回答问题，严禁使用你自身的预训练知识，严禁编造任何信息。
-2. 如果知识库中没有相关信息，或者你不确定答案，必须统一回复：
-   "这个问题我暂时无法回答，您可以通过页面下方的联系方式直接联系陈区。"
-3. 严禁推理、延伸、补充任何知识库中没有提到的内容。
-4. 严禁回答与陈区个人无关的问题，比如技术科普、闲聊、时事、其他公司信息等，一律按第2条拒答话术回复。
-5. 回答要简洁专业，口语化，重点突出，一般不超过3句话。
-
-【知识库】
-【基本信息】
-姓名：陈区
-英文名：Quade Chen
-当前职位：AI前沿部署工程师
-所在城市：广东广州
-求职状态：正在找工作，可随时联系
-
-【核心技能】
-1. AI大模型应用：DeepSeek API开发、Coze智能体搭建、RAG检索增强生成、Prompt工程
-2. 编程开发：Python、C/C++、STM32嵌入式开发、Docker、Linux、Git
-3. 内容运营：PR视频剪辑、直播运营、文案策划
-
-【项目经历】
-1. 车载防酒驾报警系统（2026年，毕业设计）
-   - 基于STM32F103单片机设计的车载酒精检测报警系统
-   - 使用MQ-3酒精传感器，浓度检测响应时间小于1秒
-   - 集成语音报警、LED灯光报警、继电器控制模块
-   - 酒精浓度超标时自动切断车辆启动电路
-   - 支持蓝牙数据传输，可在手机端查看检测数据
-   - 技术栈：STM32、C语言、传感器、蓝牙模块
-
-2. AI智能体与办公自动化（2025年）
-   - 基于Coze平台搭建业务场景智能体
-   - 对接DeepSeek API，实现RAG知识库问答功能
-   - 设计自动化工作流，替代重复性文案生成与数据整理工作
-   - 应用场景覆盖：内容创作、信息整理、客服咨询
-   - 技术栈：Coze、DeepSeek、RAG、Prompt工程
-
-【工作经历】
-2025.03 - 2025.07 直播运营
-- 负责直播间内容策划与场控执行
-- 搭建完整直播流程，定期进行数据复盘
-- 参与短视频内容剪辑制作
-
-【教育背景】
-2022 - 2026 智能科学与技术 本科
-- 核心课程：人工智能、嵌入式系统、数据结构、算法、机器学习
-- 具备软硬件结合的工程实践能力
-
-【求职意向】
-目标方向：AI应用开发、大模型工程、智能体开发、AI部署相关岗位
-`;
+【个人知识库】
+姓名：陈区，英文名Quade Chen，AI前沿部署工程师，现居广东广州，正在找工作。
+技能：1.AI应用：DeepSeek API开发、Coze智能体、RAG检索增强、Prompt工程；2.编程：Python、C/C++、STM32嵌入式开发、Docker、Linux、Git；3.运营：PR视频剪辑、直播运营、文案策划。
+项目1：车载防酒驾报警系统（2026届毕业设计），基于STM32F103单片机，采用MQ-3酒精传感器，检测响应时间小于1秒，集成语音报警、LED灯光报警、继电器控制模块，酒精浓度超标自动切断车辆启动电路，支持蓝牙数据传输到手机端。
+项目2：AI智能体与办公自动化（2025年），基于Coze平台搭建业务场景智能体，对接DeepSeek API实现RAG知识库问答，设计自动化工作流替代重复性文案生成与数据整理工作，应用于内容创作、信息整理、客服咨询等场景。
+工作经历：2025.03-2025.07 直播运营，负责直播间内容策划、场控执行、直播流程搭建、数据复盘，参与短视频内容剪辑制作。
+教育背景：2022-2026 智能科学与技术专业本科，核心课程包括人工智能、嵌入式系统、数据结构、算法、机器学习，具备软硬件结合的工程实践能力。
+求职意向：AI应用开发、大模型工程、智能体开发、AI部署相关岗位。`;
 
         let isLoading = false;
 
@@ -675,12 +634,9 @@
                         <i class="fa fa-robot"></i>
                     </div>
                     <div class="bg-slate-50 dark:bg-slate-700/50 rounded-xl rounded-tl-none px-4 py-3 text-sm max-w-[75%] leading-relaxed ai-message-content">
-                        ${text}
+                        ${text.replace(/\n/g, '<br>')}
                     </div>
                 `;
-            } else {
-                const lastMsg = document.querySelector('.ai-message-content');
-                if (lastMsg) lastMsg.innerHTML = text;
             }
             scrollToBottom();
         }
@@ -706,48 +662,28 @@
                         'Authorization': 'Bearer sk-ce0e9c216a894dc8a3a42fcb1063deb3'
                     },
                     body: JSON.stringify({
-                        model: 'deepseek-flash',
-                        stream: true,
+                        model: 'deepseek-chat',
+                        stream: false,
                         messages: [
-                            { role: 'system', content: KNOWLEDGE_BASE },
+                            { role: 'system', content: SYSTEM_PROMPT },
                             { role: 'user', content: text }
                         ],
-                        temperature: 0.1,
-                        max_tokens: 500,
-                        frequency_penalty: 0.1
+                        temperature: 0.5,
+                        max_tokens: 800
                     })
                 });
 
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder();
-                let fullText = '';
-
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-
-                    const chunk = decoder.decode(value);
-                    const lines = chunk.split('\n').filter(line => line.trim() !== '');
-
-                    for (const line of lines) {
-                        if (line.startsWith('data: ')) {
-                            const data = line.slice(6);
-                            if (data === '[DONE]') continue;
-                            
-                            try {
-                                const json = JSON.parse(data);
-                                const content = json.choices[0].delta.content;
-                                if (content) {
-                                    fullText += content;
-                                    updateAiMessage(fullText.replace(/\n/g, '<br>'));
-                                }
-                            } catch (e) {}
-                        }
-                    }
+                const data = await response.json();
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    updateAiMessage(data.choices[0].message.content);
+                } else {
+                    updateAiMessage('抱歉，暂时无法回答这个问题。');
+                    console.error('API返回异常：', data);
                 }
 
             } catch (error) {
-                updateAiMessage('抱歉，请求失败，请检查网络或API密钥是否有效。');
+                updateAiMessage('抱歉，请求失败，请检查网络连接。');
                 console.error(error);
             }
 
