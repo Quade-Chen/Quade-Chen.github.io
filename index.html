@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈区 | AI前沿部署工程师</title>
+    <title>陈区 | 大模型部署工程师</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -71,6 +71,7 @@
             background: #165DFF;
             transform: scaleY(0);
             transition: transform 0.3s ease;
+            z-index: 2;
         }
         .project-card:hover::before, .chat-card:hover::before {
             transform: scaleY(1);
@@ -132,6 +133,33 @@
             0%, 80%, 100% { transform: scale(0); }
             40% { transform: scale(1); }
         }
+
+        .section-title {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .section-eyebrow {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #165DFF;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-visual {
+            position: relative;
+            overflow: hidden;
+        }
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .project-card:hover .project-visual img {
+            transform: scale(1.04);
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-slate-900 text-neutral dark:text-slate-100 transition-colors duration-300">
@@ -166,7 +194,7 @@
 
         <div class="relative max-w-5xl mx-auto px-6 py-32 w-full">
             <div class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-6">
-                <i class="fa fa-circle text-[8px] mr-2"></i>Available for opportunities
+                <i class="fa fa-circle text-[8px] mr-2"></i>正在寻求机会
             </div>
             
             <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-bold leading-tight tracking-tight mb-4 text-balance">
@@ -174,11 +202,11 @@
             </h1>
             
             <h2 class="text-[clamp(1.25rem,3vw,1.75rem)] font-semibold text-secondary dark:text-slate-200 mb-6 h-8">
-                <span id="typing-text">AI前沿部署工程师</span><span class="typing-cursor"></span>
+                <span id="typing-text">大模型部署工程师</span><span class="typing-cursor"></span>
             </h2>
             
             <p class="text-neutral-light dark:text-slate-400 text-lg max-w-2xl leading-relaxed mb-10">
-                智能科学与技术专业背景，专注AI大模型落地应用与智能体搭建，具备软硬件开发能力与内容运营经验，致力于用技术提升效率与创造价值。
+                智能科学与技术专业背景，热衷于快速学习并落地各类AI工具。具备嵌入式软硬件开发基础与内容运营经验，专注大模型API对接、智能体搭建与场景化落地，致力于用技术提升效率。
             </p>
             
             <div class="flex flex-wrap gap-4">
@@ -196,21 +224,27 @@
     <section id="skills" class="py-24 bg-slate-50 dark:bg-slate-800/30">
         <div class="max-w-5xl mx-auto px-6">
             <div class="fade-in-up mb-16">
-                <p class="text-primary font-medium mb-2">01 / 技能特长</p>
-                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight">核心能力栈</h2>
+                <p class="section-eyebrow">01 / 核心能力</p>
+                <h2 class="section-title">技能特长</h2>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
+            <div class="grid md:grid-cols-2 gap-6">
                 <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
                     <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
                         <i class="fa fa-brain text-lg"></i>
                     </div>
-                    <h3 class="font-semibold text-lg mb-4">AI大模型应用</h3>
-                    <div class="flex flex-wrap gap-2">
+                    <h3 class="font-semibold text-lg mb-4">AI 大模型应用</h3>
+                    <p class="text-xs text-neutral-light dark:text-slate-400 mb-3">熟练落地</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
                         <span class="px-3 py-1 text-xs rounded-md bg-blue-50 dark:bg-slate-700 text-primary">DeepSeek API</span>
-                        <span class="px-3 py-1 text-xs rounded-md bg-blue-50 dark:bg-slate-700 text-primary">Coze智能体</span>
-                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">RAG检索增强</span>
-                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Prompt工程</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-blue-50 dark:bg-slate-700 text-primary">Coze 智能体</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-blue-50 dark:bg-slate-700 text-primary">Prompt 工程</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">RAG 检索增强</span>
+                    </div>
+                    <p class="text-xs text-neutral-light dark:text-slate-400 mb-3">实践了解</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">LangChain 基础</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">AI 工作流编排</span>
                     </div>
                 </div>
 
@@ -218,26 +252,46 @@
                     <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
                         <i class="fa fa-code text-lg"></i>
                     </div>
-                    <h3 class="font-semibold text-lg mb-4">编程开发</h3>
+                    <h3 class="font-semibold text-lg mb-4">开发与工程</h3>
+                    <p class="text-xs text-neutral-light dark:text-slate-400 mb-3">嵌入式开发</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">STM32</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">C 语言</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">传感器调试</span>
+                    </div>
+                    <p class="text-xs text-neutral-light dark:text-slate-400 mb-3">工具与环境</p>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Python</span>
-                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">C/C++</span>
-                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">STM32</span>
-                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Docker</span>
-                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Linux</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Linux 基础</span>
                         <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Git</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">Docker 基础</span>
                     </div>
                 </div>
 
                 <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow" style="transition-delay: 0.2s">
                     <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
-                        <i class="fa fa-film text-lg"></i>
+                        <i class="fa fa-briefcase text-lg"></i>
                     </div>
-                    <h3 class="font-semibold text-lg mb-4">内容运营</h3>
+                    <h3 class="font-semibold text-lg mb-4">运营与执行</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">PR剪辑</span>
-                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">直播运营</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">直播场控</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">数据复盘</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">PR 剪辑</span>
                         <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">文案策划</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">人员协调</span>
+                    </div>
+                </div>
+
+                <div class="fade-in-up bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow" style="transition-delay: 0.3s">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                        <i class="fa fa-lightbulb-o text-lg"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-4">个人特质</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">快速学习新工具</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">动手实践能力强</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">问题排查思维</span>
+                        <span class="px-3 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700">流程化执行</span>
                     </div>
                 </div>
             </div>
@@ -248,92 +302,178 @@
     <section id="projects" class="py-24">
         <div class="max-w-5xl mx-auto px-6">
             <div class="fade-in-up mb-16">
-                <p class="text-primary font-medium mb-2">02 / 项目作品</p>
-                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight">代表项目</h2>
+                <p class="section-eyebrow">02 / 代表作品</p>
+                <h2 class="section-title">项目经历</h2>
             </div>
 
             <div class="space-y-8">
+                <!-- 项目1：毕设 -->
                 <div class="fade-in-up project-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all hover:-translate-y-1">
                     <div class="md:flex">
-                        <div class="md:w-2/5 h-48 md:h-auto bg-gradient-to-br from-blue-600 to-indigo-700 relative overflow-hidden">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fa fa-car text-white/20 text-8xl"></i>
-                            </div>
+                        <div class="md:w-2/5 h-56 md:h-auto project-visual bg-gradient-to-br from-blue-600 to-indigo-700">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="嵌入式系统开发">
                             <div class="absolute bottom-4 left-4 text-white">
-                                <span class="text-xs px-2 py-1 bg-white/20 rounded backdrop-blur-sm">嵌入式开发</span>
+                                <span class="text-xs px-2 py-1 bg-white/20 rounded backdrop-blur-sm">嵌入式系统 · 毕设</span>
                             </div>
                         </div>
                         <div class="md:w-3/5 p-8">
                             <div class="flex justify-between items-start mb-3">
-                                <h3 class="font-bold text-xl">车载防酒驾报警系统</h3>
+                                <h3 class="font-bold text-xl">基于STM32的车载防酒驾报警系统</h3>
                                 <span class="text-xs text-neutral-light">2026</span>
                             </div>
                             <p class="text-neutral-light dark:text-slate-400 text-sm mb-4 leading-relaxed">
-                                基于STM32F103单片机设计的车载酒精检测报警系统，用于毕业设计。
+                                独立完成的本科毕业设计，从需求分析、硬件选型、电路调试到软件开发、系统测试全流程落地。
                             </p>
                             <ul class="space-y-2 text-sm">
                                 <li class="flex items-start">
                                     <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
-                                    <span>采用MQ-3酒精传感器实现精准浓度检测，响应时间小于1秒</span>
+                                    <span>主控采用STM32F103C8T6，搭载MQ-3酒精传感器、BM01压力传感器、0.96寸OLED屏、有源蜂鸣器与双路LED指示</span>
                                 </li>
                                 <li class="flex items-start">
                                     <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
-                                    <span>集成声光报警与继电器控制，超标自动切断车辆启动电路</span>
+                                    <span>实现8值滑动平均滤波、按键消抖、ADC多通道采集等算法，报警响应时间0.8秒，检测误差控制在±10%以内</span>
                                 </li>
                                 <li class="flex items-start">
                                     <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
-                                    <span>支持蓝牙数据传输，可通过移动端查看检测数据</span>
+                                    <span>支持阈值手动调节、入座状态独立检测、超标声光双重报警，连续4小时稳定运行，零点漂移≤5mg/100mL</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>使用AI工具辅助代码调试与传感器数据标定，提升开发效率，快速定位硬件时序问题</span>
                                 </li>
                             </ul>
-                            <div class="mt-5 flex gap-3">
+                            <div class="mt-5 flex gap-3 flex-wrap">
                                 <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">STM32</span>
-                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">C语言</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">C 语言</span>
                                 <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">传感器</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">数字滤波</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- 项目2：简历AI助手 -->
                 <div class="fade-in-up project-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all hover:-translate-y-1" style="transition-delay: 0.1s">
                     <div class="md:flex">
-                        <div class="md:w-2/5 h-48 md:h-auto bg-gradient-to-br from-cyan-500 to-blue-600 relative overflow-hidden">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fa fa-robot text-white/20 text-8xl"></i>
-                            </div>
+                        <div class="md:w-2/5 h-56 md:h-auto project-visual bg-gradient-to-br from-cyan-500 to-blue-600">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80" alt="AI问答系统">
                             <div class="absolute bottom-4 left-4 text-white">
-                                <span class="text-xs px-2 py-1 bg-white/20 rounded backdrop-blur-sm">AI应用</span>
+                                <span class="text-xs px-2 py-1 bg-white/20 rounded backdrop-blur-sm">AI 应用 · RAG</span>
                             </div>
                         </div>
                         <div class="md:w-3/5 p-8">
                             <div class="flex justify-between items-start mb-3">
-                                <h3 class="font-bold text-xl">AI智能体与办公自动化</h3>
-                                <span class="text-xs text-neutral-light">2025</span>
+                                <h3 class="font-bold text-xl">个人简历 AI 问答助手</h3>
+                                <span class="text-xs text-neutral-light">2026</span>
                             </div>
                             <p class="text-neutral-light dark:text-slate-400 text-sm mb-4 leading-relaxed">
-                                基于Coze平台搭建业务场景智能体，结合大模型API实现自动化工作流。
+                                基于 DeepSeek API 开发的轻量 RAG 问答系统，嵌入个人简历网页，面试官可直接对话了解信息。
                             </p>
                             <ul class="space-y-2 text-sm">
                                 <li class="flex items-start">
                                     <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
-                                    <span>对接DeepSeek API，搭建RAG知识库问答系统</span>
+                                    <span>内置结构化个人知识库，配置零容忍规则约束，回答严格基于资料，避免编造</span>
                                 </li>
                                 <li class="flex items-start">
                                     <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
-                                    <span>设计自动化工作流，替代重复性文案生成与数据整理工作</span>
+                                    <span>纯前端实现，无需后端服务，部署于 GitHub Pages，支持流式输出与深色模式</span>
                                 </li>
                                 <li class="flex items-start">
                                     <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
-                                    <span>覆盖内容创作、信息整理、客服咨询等多个业务场景</span>
+                                    <span>可回答技能、项目、经历等个人问题，也可交流技术、行业、求职相关通用话题</span>
                                 </li>
                             </ul>
-                            <div class="mt-5 flex gap-3">
-                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">Coze</span>
-                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">DeepSeek</span>
+                            <div class="mt-5 flex gap-3 flex-wrap">
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">DeepSeek API</span>
                                 <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">RAG</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">纯前端</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">GitHub Pages</span>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- 项目3：运营复盘智能体 -->
+                <div class="fade-in-up project-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all hover:-translate-y-1" style="transition-delay: 0.2s">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 h-56 md:h-auto project-visual bg-gradient-to-br from-violet-500 to-purple-600">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="数据分析复盘">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <span class="text-xs px-2 py-1 bg-white/20 rounded backdrop-blur-sm">智能体 · 效率工具</span>
+                            </div>
+                        </div>
+                        <div class="md:w-3/5 p-8">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-bold text-xl">直播运营数据复盘智能体</h3>
+                                <span class="text-xs text-neutral-light">2025</span>
+                            </div>
+                            <p class="text-neutral-light dark:text-slate-400 text-sm mb-4 leading-relaxed">
+                                基于 Coze 平台搭建的运营效率工具，用于直播结束后自动生成复盘报告，替代人工整理。
+                            </p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>上传场控记录与数据表格，自动提炼核心数据、场控问题与优化建议</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>单场复盘从人工30分钟缩短至5分钟输出，标准化输出结构，便于归档对比</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>结合 Prompt 工程优化输出风格，适配运营团队的阅读习惯与汇报需求</span>
+                                </li>
+                            </ul>
+                            <div class="mt-5 flex gap-3 flex-wrap">
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">Coze</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">智能体</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">Prompt 工程</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">运营提效</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目4：文档问答助手 -->
+                <div class="fade-in-up project-card bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all hover:-translate-y-1" style="transition-delay: 0.3s">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 h-56 md:h-auto project-visual bg-gradient-to-br from-emerald-500 to-teal-600">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80" alt="技术文档查询">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <span class="text-xs px-2 py-1 bg-white/20 rounded backdrop-blur-sm">开发工具 · 个人项目</span>
+                            </div>
+                        </div>
+                        <div class="md:w-3/5 p-8">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-bold text-xl">嵌入式技术文档问答助手</h3>
+                                <span class="text-xs text-neutral-light">2025</span>
+                            </div>
+                            <p class="text-neutral-light dark:text-slate-400 text-sm mb-4 leading-relaxed">
+                                面向嵌入式开发的个人效率工具，导入芯片手册与传感器 datasheet，快速检索技术参数。
+                            </p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>基于 DeepSeek API 构建 RAG 检索能力，支持按寄存器、引脚、时序等精准查询</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>可生成示例代码片段、常见问题排查建议，辅助毕设开发过程中的问题定位</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-primary mt-1 mr-3 text-xs"></i>
+                                    <span>相比翻手册查找，参数检索效率提升明显，减少反复查阅文档的时间</span>
+                                </li>
+                            </ul>
+                            <div class="mt-5 flex gap-3 flex-wrap">
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">DeepSeek API</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">RAG</span>
+                                <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">嵌入式文档</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -342,8 +482,8 @@
     <section id="experience" class="py-24 bg-slate-50 dark:bg-slate-800/30">
         <div class="max-w-5xl mx-auto px-6">
             <div class="fade-in-up mb-16">
-                <p class="text-primary font-medium mb-2">03 / 经历背景</p>
-                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight">工作与教育</h2>
+                <p class="section-eyebrow">03 / 经历背景</p>
+                <h2 class="section-title">工作与教育</h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-16">
@@ -356,10 +496,16 @@
                         
                         <div class="timeline-item pb-10">
                             <p class="text-sm text-neutral-light dark:text-slate-400 mb-1">2025.03 - 2025.07</p>
-                            <h4 class="font-semibold text-base mb-2">直播运营</h4>
-                            <p class="text-sm text-neutral-light dark:text-slate-400 leading-relaxed">
-                                负责直播间内容策划与场控执行，完成直播流程搭建与数据复盘，参与短视频内容剪辑制作。
+                            <h4 class="font-semibold text-base mb-2">直播运营 · 场控执行</h4>
+                            <p class="text-sm text-neutral-light dark:text-slate-400 leading-relaxed mb-2">
+                                抖音平台个护品类直播间，参与直播全流程执行与配合工作。
                             </p>
+                            <ul class="text-xs space-y-1 text-neutral-light dark:text-slate-400">
+                                <li>· 负责直播间场控执行，把控节奏与互动，保障直播零冷场</li>
+                                <li>· 协调现场人员与物料，配合完成多场直播顺利落地</li>
+                                <li>· 负责直播后数据整理与复盘输出，形成标准化报表</li>
+                                <li>· 使用AI工具辅助复盘文案生成与数据整理，提升效率</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -374,9 +520,14 @@
                         <div class="timeline-item pb-10">
                             <p class="text-sm text-neutral-light dark:text-slate-400 mb-1">2022 - 2026</p>
                             <h4 class="font-semibold text-base mb-2">智能科学与技术 · 本科</h4>
-                            <p class="text-sm text-neutral-light dark:text-slate-400 leading-relaxed">
-                                系统学习人工智能、嵌入式系统、数据结构等核心课程，具备软硬件结合的工程实践能力。
+                            <p class="text-sm text-neutral-light dark:text-slate-400 leading-relaxed mb-2">
+                                系统学习人工智能与嵌入式技术体系，具备软硬件结合的工程实践能力。
                             </p>
+                            <ul class="text-xs space-y-1 text-neutral-light dark:text-slate-400">
+                                <li>· 核心课程：人工智能、嵌入式系统、数据结构、算法、机器学习</li>
+                                <li>· 实践方向：单片机开发、传感器应用、大模型API落地</li>
+                                <li>· 毕设项目：基于STM32的车载防酒驾报警系统设计与实现</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -388,9 +539,9 @@
     <section id="chat" class="py-24">
         <div class="max-w-5xl mx-auto px-6">
             <div class="fade-in-up mb-16">
-                <p class="text-primary font-medium mb-2">04 / AI互动问答</p>
-                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight mb-3">想更了解我？问问我的AI助手</h2>
-                <p class="text-neutral-light dark:text-slate-400 max-w-2xl">
+                <p class="section-eyebrow">04 / AI互动问答</p>
+                <h2 class="section-title">想更了解我？问问我的AI助手</h2>
+                <p class="text-neutral-light dark:text-slate-400 max-w-2xl mt-3">
                     可以问我关于个人技能、项目经历的问题，也可以交流技术、行业、求职相关话题。
                 </p>
             </div>
@@ -405,10 +556,10 @@
                             <p>你好！我是陈区的 AI 简历助手，可以回答关于他的技能、项目和经历，也可以交流技术、求职相关的话题。</p>
                             <p class="mt-3 text-xs text-neutral-light dark:text-slate-400 font-medium">推荐问题：</p>
                             <div class="mt-2 space-y-1.5">
-                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">你掌握哪些技术栈？</button>
                                 <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">介绍一下你的毕业设计</button>
+                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">你做过哪些AI相关的项目？</button>
                                 <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">RAG是什么意思？</button>
-                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">AI工程师面试要注意什么？</button>
+                                <button class="suggestion-btn text-left w-full text-sm text-primary hover:underline">大模型部署工程师要会什么？</button>
                             </div>
                         </div>
                     </div>
@@ -496,7 +647,7 @@
         });
 
         const typingText = document.getElementById('typing-text');
-        const roles = ['AI前沿部署工程师', '大模型应用开发者', 'AI智能体搭建师', '技术×内容运营'];
+        const roles = ['大模型部署工程师', 'AI应用落地工程师', '智能体搭建师', '嵌入式开发×AI应用'];
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -553,12 +704,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // ========== AI聊天核心逻辑（稳定修复版） ==========
+        // ========== AI聊天核心逻辑 ==========
         const chatInput = document.getElementById('chat-input');
         const chatSend = document.getElementById('chat-send');
         const chatMessages = document.getElementById('chat-messages');
 
-        // 精简版系统提示，避免长文本导致输出截断
         const SYSTEM_PROMPT = `你是陈区的简历助手。
 规则：
 1. 问陈区个人情况，只用下面知识库回答，不能编造。不知道就说：这个问题我暂时无法回答，您可以通过页面下方联系方式联系陈区。
@@ -566,13 +716,52 @@
 3. 回答简洁，不超过3句话。
 
 知识库：
-陈区，AI前沿部署工程师，广州，正在找工作。
-技能：DeepSeek API、Coze智能体、RAG、Prompt工程、Python、C/C++、STM32、Docker、Linux、Git、PR剪辑、直播运营、文案策划。
-项目1：2026毕设-车载防酒驾报警系统，STM32F103单片机，MQ-3传感器，响应<1秒，声光报警+继电器断车，蓝牙传数据。
-项目2：2025-AI智能体与办公自动化，Coze平台，DeepSeek API，RAG问答，自动化工作流，用于文案、信息整理、客服。
-工作：2025.03-07直播运营，策划、场控、流程、复盘、短视频剪辑。
-教育：2022-2026智能科学与技术本科，学过AI、嵌入式、算法、机器学习。
-求职意向：AI应用开发、大模型工程、智能体开发、AI部署。`;
+陈区，英文名Quade Chen，大模型部署工程师方向，现居广东广州，正在找工作。
+优势：快速学习并落地各类AI工具，具备嵌入式软硬件基础与运营经验，动手实践能力强。
+
+技能：
+-熟练：DeepSeek API开发、Coze智能体搭建、Prompt工程、直播场控、数据复盘
+-实践：Python、C语言、STM32嵌入式开发、RAG检索增强、Docker、Linux、Git、PR剪辑
+
+项目经历（共4个）：
+1. 基于STM32的车载防酒驾报警系统（2026，毕设，独立完成）
+   - 主控STM32F103C8T6，搭载MQ-3酒精传感器、BM01压力传感器、0.96寸OLED、有源蜂鸣器、双路LED
+   - 实现8值滑动平均滤波、按键消抖、ADC多通道采集，报警响应0.8秒，误差±10%
+   - 支持阈值调节、入座独立检测、超标声光报警，连续4h稳定运行
+   - 使用AI工具辅助代码调试与传感器标定，提升开发效率
+   - 技术栈：STM32、C语言、传感器、数字滤波
+
+2. 个人简历AI问答助手（2026，当前网页）
+   - 基于DeepSeek API的轻量RAG问答系统，嵌入个人简历网页
+   - 内置结构化知识库，零容忍规则约束，回答严格基于资料
+   - 纯前端实现，GitHub Pages部署，支持流式输出、深色模式
+   - 技术栈：DeepSeek API、RAG、纯前端、GitHub Pages
+
+3. 直播运营数据复盘智能体（2025）
+   - 基于Coze平台搭建，上传场控记录与数据表格，自动生成复盘报告
+   - 自动提炼核心数据、场控问题、优化建议
+   - 单场复盘从30分钟缩短到5分钟，标准化输出
+   - 技术栈：Coze、智能体、Prompt工程、运营提效
+
+4. 嵌入式技术文档问答助手（2025，个人工具）
+   - 基于DeepSeek API+RAG，导入芯片手册和datasheet，快速检索技术参数
+   - 支持生成示例代码、问题排查建议，辅助毕设开发
+   - 技术栈：DeepSeek API、RAG、嵌入式文档
+
+工作经历：
+2025.03-2025.07 直播运营场控执行，抖音个护品类
+- 负责直播间场控，把控节奏互动，保障零冷场
+- 协调人员物料，配合多场直播落地
+- 直播后数据整理复盘，输出报表
+- 使用AI工具辅助复盘文案与数据整理，提升效率
+
+教育背景：
+2022-2026 智能科学与技术本科
+- 核心课程：人工智能、嵌入式系统、数据结构、算法、机器学习
+- 实践方向：单片机开发、传感器应用、大模型API落地
+- 毕设：基于STM32的车载防酒驾报警系统
+
+求职意向：大模型部署、AI应用开发、智能体开发、AI落地相关岗位。`;
 
         let isLoading = false;
 
@@ -673,7 +862,6 @@
                 
                 if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
                     const reply = data.choices[0].message.content.trim();
-                    // 输出完整性校验
                     if (reply.length < 2) {
                         updateAiMessage('抱歉，回答生成异常，请重试。');
                         console.error('输出截断，原始返回：', data);
